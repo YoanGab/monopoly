@@ -9,14 +9,14 @@ namespace MONOPOLY_LEDUC_GABISON.models
         private List<Player> players;
         private int indexCurrentPlayer;
         private Player currentPlayer;
-        private int[] dices;
+        private int[] dice;
 
         // Constructor
         public Game()
         {
             players = new List<Player>();
             currentPlayer = null;
-            dices = new int[2];
+            dice = new int[2];
         }
 
         // Getters & Setters
@@ -26,7 +26,7 @@ namespace MONOPOLY_LEDUC_GABISON.models
 
         public Player CurrentPlayer { get => currentPlayer; set => currentPlayer = value; }
 
-        public int[] Dices { get => dices; set => dices = value; }
+        public int[] Dice { get => dice; set => dice = value; }
 
         // Methods
         public void AddPlayer(Player player)
@@ -39,11 +39,11 @@ namespace MONOPOLY_LEDUC_GABISON.models
             players.Remove(player);
         }
 
-        public void RollDices()
+        public void RollDice()
         {
             Random rnd = new Random();
-            dices[0] = rnd.Next(1, 7);
-            dices[1] = rnd.Next(1, 7);
+            dice[0] = rnd.Next(1, 7);
+            dice[1] = rnd.Next(1, 7);
         }
 
         public void Play()
@@ -60,8 +60,8 @@ namespace MONOPOLY_LEDUC_GABISON.models
                 currentPlayer = players[indexCurrentPlayer];
             }
 
-            RollDices();
-            bool isTurnOver = currentPlayer.Move(dices[0] + dices[1], dices[0] == dices[1]);
+            RollDice();
+            bool isTurnOver = currentPlayer.Move(dice[0] + dice[1], dice[0] == dice[1]);
             Console.WriteLine(currentPlayer);
             if (isTurnOver)
             {

@@ -42,6 +42,7 @@ namespace MONOPOLY_LEDUC_GABISON.models
             {
                 this.position %= 40;
                 this.nbCompletedLaps++;
+             
             }
             return this.position;
         }

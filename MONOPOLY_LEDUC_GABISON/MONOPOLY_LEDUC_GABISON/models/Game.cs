@@ -10,6 +10,7 @@ namespace MONOPOLY_LEDUC_GABISON.models
         private int indexCurrentPlayer;
         private Player currentPlayer;
         private int[] dice;
+        private List<Observer> lapObservers, jailObservers;
 
         // Constructor
         public Game()
@@ -17,6 +18,8 @@ namespace MONOPOLY_LEDUC_GABISON.models
             players = new List<Player>();
             currentPlayer = null;
             dice = new int[2];
+            lapObservers = new List<Observer>();
+            jailObservers = new List<Observer>();
         }
 
         // Getters & Setters
@@ -28,7 +31,25 @@ namespace MONOPOLY_LEDUC_GABISON.models
 
         public int[] Dice { get => dice; set => dice = value; }
 
-        // Methods
+        // Methods       
+        void registerLapObservers(Observer o) {
+            lapObservers.Add(o);
+        }
+
+        void registerJailObservers(Observer o) {
+            jailObservers.Add(o);
+        }
+
+        public void notifyLapObservers() {
+            foreach (Observer o in lapObservers)
+                o.update();
+        }
+
+        public void notifyJailObservers() {
+            foreach (Observer o in jailObservers)
+                o.update();
+        }
+
         public void AddPlayer(Player player)
         {
             players.Add(player);

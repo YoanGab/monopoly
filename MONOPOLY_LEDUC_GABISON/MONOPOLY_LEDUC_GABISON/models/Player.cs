@@ -3,6 +3,7 @@ namespace MONOPOLY_LEDUC_GABISON.models
     public class Player
     {
         // Constants
+        public const int JAIL_POSITION = 10;
         public const int GO_TO_JAIL_CASE_POSITION = 30;
         public const int LIMIT_DOUBLES_IN_A_ROW = 3;
         public const int LIMIT_TURNS_IN_JAIL = 3;
@@ -90,14 +91,15 @@ namespace MONOPOLY_LEDUC_GABISON.models
         public void GoToJail()
         {
             this.nbDoublesInARow = 0;
-            this.position = 10;
+            this.position = JAIL_POSITION;
             this.isInJail = true;
             this.nbTurnInJail = 0;
         }
 
         public override string ToString()
         {
-            return this.name + " : " + this.position + " : " + this.nbCompletedLaps + " : " + this.nbDoublesInARow + " : " + this.nbTurnInJail + " : " + this.isInJail;
+            return $"Name: {this.name}  \t|  Position: {this.position}  \t|  Completed Laps: {this.nbCompletedLaps}  \t|  Nb " +
+                   $"Doubles in a row: {this.nbDoublesInARow}  \t|  Nb turns in jail: {this.nbTurnInJail}  \t|  Is in jail: {this.isInJail}";
         }
     }
 }

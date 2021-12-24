@@ -69,9 +69,9 @@ namespace MONOPOLY_LEDUC_GABISON.models
 
         public void Play()
         {
-            if (players.Count == 0)
+            if (players.Count <= 1)
             {
-                throw new Exception("No player in the game");
+                throw new Exception("Not enough player in the game");
             }
 
             if (currentPlayer == null)
@@ -86,6 +86,7 @@ namespace MONOPOLY_LEDUC_GABISON.models
             Console.WriteLine(currentPlayer);
             if (isTurnOver)
             {
+                // Replace with Iterator pattern
                 indexCurrentPlayer++;
                 if (indexCurrentPlayer >= players.Count)
                 {

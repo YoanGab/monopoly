@@ -1,8 +1,12 @@
+using System;
+using System.Collections.Generic;
+
 namespace MONOPOLY_LEDUC_GABISON.models
 {
     public class Player
     {
         // Constants
+        public const int JAIL_POSITION = 10;
         public const int GO_TO_JAIL_CASE_POSITION = 30;
         public const int LIMIT_DOUBLES_IN_A_ROW = 3;
         public const int LIMIT_TURNS_IN_JAIL = 3;
@@ -14,16 +18,23 @@ namespace MONOPOLY_LEDUC_GABISON.models
         private int nbTurnInJail;
         private int nbCompletedLaps;
         private int nbDoublesInARow;
+        private StrObserver lapObserver, inJailObserver, outJailObserver, doubleObserver, square30Observer;
+            
 
         // Constructor
         public Player(string name)
         {
             this.name = name;
-            this.position = 0;
-            this.isInJail = false;
-            this.nbTurnInJail = 0;
-            this.nbCompletedLaps = 0;
-            this.nbDoublesInARow = 0;
+            position = 0;
+            isInJail = false;
+            nbTurnInJail = 0;
+            nbCompletedLaps = 0;
+            nbDoublesInARow = 0;
+            lapObserver = new StrObserver($"New lap for {this.name}!");
+            inJailObserver = new StrObserver($"Oh no! {this.name} is in jail (square 10)! Make a double or wait 3 turns to get out of jail.");
+            outJailObserver = new StrObserver($"Congrats, {this.name}! You're finally out of jail!");
+            doubleObserver = new StrObserver($"{this.name} made 3 doubles in a row.");
+            square30Observer = new StrObserver($"{this.name} arrived on square 30.");
         }
 
         // Getters and Setters
@@ -35,51 +46,80 @@ namespace MONOPOLY_LEDUC_GABISON.models
         public int NbDoublesInARow { get => nbDoublesInARow; set => nbDoublesInARow = value; }
 
         // Methods
+        public void notifyLapObserver()
+        {
+            lapObserver.update();
+        }
+        public void notifyInJailObserver()
+        {
+            inJailObserver.update();
+        }
+        public void notifyOutJailObserver()
+        {
+            outJailObserver.update();
+        }
+        public void notifyDoubleObserver()
+        {
+            doubleObserver.update();
+        }
+        public void notifySquare30Observer()
+        {
+            square30Observer.update();
+        }
+
+
+
+
+
         public int Move(int nbSteps)
         {
-            this.position += nbSteps;
-            if (this.position >= 40)
+            position += nbSteps;
+            if (position >= 40)
             {
-                this.position %= 40;
-                this.nbCompletedLaps++;
+                position %= 40;
+                nbCompletedLaps++;
+                notifyLapObserver();
             }
-            return this.position;
+            return position;
         }
 
         public bool Move(int nbSteps, bool isDouble)
         {
-            if (this.isInJail)
+            if (isInJail)
             {
-                this.nbTurnInJail++;
-                if (isDouble || this.nbTurnInJail == LIMIT_TURNS_IN_JAIL)
+                nbTurnInJail++;
+                if (isDouble || nbTurnInJail == LIMIT_TURNS_IN_JAIL)
                 {
-                    this.Move(nbSteps);
-                    this.isInJail = false;
-                    this.nbTurnInJail = 0;
+                    Move(nbSteps);
+                    isInJail = false;
+                    nbTurnInJail = 0;
+                    notifyOutJailObserver();
                 }
                 return true;
             }
 
             if (isDouble)
             {
-                this.nbDoublesInARow++;
-                if (this.nbDoublesInARow == LIMIT_DOUBLES_IN_A_ROW)
+                nbDoublesInARow++;
+                if (nbDoublesInARow == LIMIT_DOUBLES_IN_A_ROW)
                 {
-                    this.GoToJail();
+                    notifyDoubleObserver();   
+                    GoToJail();
                     return true;
                 }
             }
 
-            this.Move(nbSteps);
-            if (this.position == GO_TO_JAIL_CASE_POSITION)
+            Move(nbSteps);
+            if (position == GO_TO_JAIL_CASE_POSITION)
             {
-                this.GoToJail();
+                notifySquare30Observer();
+                GoToJail();                
                 return true;
             }
 
             if (!isDouble)
             {
-                this.nbDoublesInARow = 0;
+                nbDoublesInARow = 0;
                 return true;
             }
 
@@ -88,15 +128,17 @@ namespace MONOPOLY_LEDUC_GABISON.models
 
         public void GoToJail()
         {
-            this.nbDoublesInARow = 0;
-            this.position = 10;
-            this.isInJail = true;
-            this.nbTurnInJail = 0;
+            nbDoublesInARow = 0;
+            position = JAIL_POSITION;
+            isInJail = true;
+            nbTurnInJail = 0;
+            notifyInJailObserver();
         }
 
         public override string ToString()
         {
-            return this.name + " : " + this.position + " : " + this.nbCompletedLaps + " : " + this.nbDoublesInARow + " : " + this.nbTurnInJail + " : " + this.isInJail;
+            return $"Name: {this.name}  \t|  Position: {this.position}  \t|  Completed Laps: {this.nbCompletedLaps}  \t|  Nb " +
+                   $"Doubles in a row: {this.nbDoublesInARow}  \t|  Nb turns in jail: {this.nbTurnInJail}  \t|  Is in jail: {this.isInJail}";
         }
     }
 }

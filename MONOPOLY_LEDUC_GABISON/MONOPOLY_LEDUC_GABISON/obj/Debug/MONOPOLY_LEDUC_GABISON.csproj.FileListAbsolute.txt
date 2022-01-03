@@ -1,0 +1,14 @@
+C:\Users\basti\OneDrive - De Vinci\ESILV\A4\Design Pattern & Software Development Process\Final_Project_MONOPOLY\MONOPOLY_LEDUC_GABISON\MONOPOLY_LEDUC_GABISON\bin\Debug\MONOPOLY_LEDUC_GABISON.exe.config
+C:\Users\basti\OneDrive - De Vinci\ESILV\A4\Design Pattern & Software Development Process\Final_Project_MONOPOLY\MONOPOLY_LEDUC_GABISON\MONOPOLY_LEDUC_GABISON\bin\Debug\MONOPOLY_LEDUC_GABISON.exe
+C:\Users\basti\OneDrive - De Vinci\ESILV\A4\Design Pattern & Software Development Process\Final_Project_MONOPOLY\MONOPOLY_LEDUC_GABISON\MONOPOLY_LEDUC_GABISON\bin\Debug\MONOPOLY_LEDUC_GABISON.pdb
+C:\Users\basti\OneDrive - De Vinci\ESILV\A4\Design Pattern & Software Development Process\Final_Project_MONOPOLY\MONOPOLY_LEDUC_GABISON\MONOPOLY_LEDUC_GABISON\obj\Debug\MONOPOLY_LEDUC_GABISON.csproj.AssemblyReference.cache
+C:\Users\basti\OneDrive - De Vinci\ESILV\A4\Design Pattern & Software Development Process\Final_Project_MONOPOLY\MONOPOLY_LEDUC_GABISON\MONOPOLY_LEDUC_GABISON\obj\Debug\MONOPOLY_LEDUC_GABISON.csproj.CoreCompileInputs.cache
+C:\Users\basti\OneDrive - De Vinci\ESILV\A4\Design Pattern & Software Development Process\Final_Project_MONOPOLY\MONOPOLY_LEDUC_GABISON\MONOPOLY_LEDUC_GABISON\obj\Debug\MONOPOLY_LEDUC_GABISON.exe
+C:\Users\basti\OneDrive - De Vinci\ESILV\A4\Design Pattern & Software Development Process\Final_Project_MONOPOLY\MONOPOLY_LEDUC_GABISON\MONOPOLY_LEDUC_GABISON\obj\Debug\MONOPOLY_LEDUC_GABISON.pdb
+C:\Users\basti\OneDrive - De Vinci\ESILV\A4\S7\Design Pattern & Software Development Process\Final_Project_MONOPOLY\MONOPOLY_LEDUC_GABISON\MONOPOLY_LEDUC_GABISON\bin\Debug\MONOPOLY_LEDUC_GABISON.exe.config
+C:\Users\basti\OneDrive - De Vinci\ESILV\A4\S7\Design Pattern & Software Development Process\Final_Project_MONOPOLY\MONOPOLY_LEDUC_GABISON\MONOPOLY_LEDUC_GABISON\bin\Debug\MONOPOLY_LEDUC_GABISON.exe
+C:\Users\basti\OneDrive - De Vinci\ESILV\A4\S7\Design Pattern & Software Development Process\Final_Project_MONOPOLY\MONOPOLY_LEDUC_GABISON\MONOPOLY_LEDUC_GABISON\bin\Debug\MONOPOLY_LEDUC_GABISON.pdb
+C:\Users\basti\OneDrive - De Vinci\ESILV\A4\S7\Design Pattern & Software Development Process\Final_Project_MONOPOLY\MONOPOLY_LEDUC_GABISON\MONOPOLY_LEDUC_GABISON\obj\Debug\MONOPOLY_LEDUC_GABISON.csproj.AssemblyReference.cache
+C:\Users\basti\OneDrive - De Vinci\ESILV\A4\S7\Design Pattern & Software Development Process\Final_Project_MONOPOLY\MONOPOLY_LEDUC_GABISON\MONOPOLY_LEDUC_GABISON\obj\Debug\MONOPOLY_LEDUC_GABISON.csproj.CoreCompileInputs.cache
+C:\Users\basti\OneDrive - De Vinci\ESILV\A4\S7\Design Pattern & Software Development Process\Final_Project_MONOPOLY\MONOPOLY_LEDUC_GABISON\MONOPOLY_LEDUC_GABISON\obj\Debug\MONOPOLY_LEDUC_GABISON.exe
+C:\Users\basti\OneDrive - De Vinci\ESILV\A4\S7\Design Pattern & Software Development Process\Final_Project_MONOPOLY\MONOPOLY_LEDUC_GABISON\MONOPOLY_LEDUC_GABISON\obj\Debug\MONOPOLY_LEDUC_GABISON.pdb

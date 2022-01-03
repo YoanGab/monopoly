@@ -47,17 +47,21 @@ namespace MONOPOLY_LEDUC_GABISON.models
             players.Remove(player);
         }
 
-        public void RollDice()
-        {
-            Random rnd = new Random();
+        
+        public void RollDice(Random rnd)
+        {            
             dice[0] = rnd.Next(1, 7);
             dice[1] = rnd.Next(1, 7);
+            Console.WriteLine($"\nDie 1: {dice[0]}\nDie 2: {dice[1]}\nSum Dice: {dice[0]+dice[1]}");
         }
 
         public void Play()
         {
+            Random rnd = new Random();
+            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             string space = "                                  ";
-            Console.WriteLine("\n\n\n");
+            Console.WriteLine("\n\n");
             Console.WriteLine(space + "$$\\      $$\\  $$$$$$\\  $$\\   $$\\  $$$$$$\\  $$$$$$$\\   $$$$$$\\  $$\\   $$\\     $$\\       ");
             Console.WriteLine(space + "$$$\\    $$$ |$$  __$$\\ $$$\\  $$ |$$  __$$\\ $$  __$$\\ $$  __$$\\ $$ |  \\$$\\   $$  |      ");
             Console.WriteLine(space + "$$$$\\  $$$$ |$$ /  $$ |$$$$\\ $$ |$$ /  $$ |$$ |  $$ |$$ /  $$ |$$ |   \\$$\\ $$  /       ");
@@ -68,6 +72,7 @@ namespace MONOPOLY_LEDUC_GABISON.models
             Console.WriteLine(space + "\\__|     \\__| \\______/ \\__|  \\__| \\______/ \\__|       \\______/ \\________|\\__|          \n\n");
             int nbPlayer;
             string p;
+            Console.ForegroundColor = ConsoleColor.Blue;
             do
             {
                 Console.Write("Select the number of players: ");
@@ -82,18 +87,17 @@ namespace MONOPOLY_LEDUC_GABISON.models
 
             if (currentPlayer == null)
             {
-                Random rnd = new Random();
                 indexCurrentPlayer = rnd.Next(0, players.Count);
                 currentPlayer = players[indexCurrentPlayer];
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"\n\n{currentPlayer.Name} starts the game!\n\n");
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
             }
             
 
             do
             {
-                RollDice();
+                RollDice(rnd);
                 bool isTurnOver = currentPlayer.Move(dice[0] + dice[1], dice[0] == dice[1]);
                 Console.WriteLine(currentPlayer);
                 if (isTurnOver)
@@ -101,9 +105,7 @@ namespace MONOPOLY_LEDUC_GABISON.models
                     // Replace with Iterator pattern
                     indexCurrentPlayer++;
                     if (indexCurrentPlayer >= players.Count)
-                    {
-                        indexCurrentPlayer = 0;
-                    }
+                        indexCurrentPlayer = 0;                    
                     currentPlayer = players[indexCurrentPlayer];
                 }
             } while (!IsGameOver());

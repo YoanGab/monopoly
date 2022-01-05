@@ -1,5 +1,7 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
+using MONOPOLY_LEDUC_GABISON.models;
 
 namespace MONOPOLY_LEDUC_GABISON.models
 {
@@ -47,15 +49,17 @@ namespace MONOPOLY_LEDUC_GABISON.models
             players.Remove(player);
         }
 
-        public void RollDice()
+        public void RollDice(Random rnd)
         {
-            Random rnd = new Random();
             dice[0] = rnd.Next(1, 7);
             dice[1] = rnd.Next(1, 7);
+            Console.WriteLine($"1st dice: {dice[0]}, 2nd dice: {dice[1]}\nTotal: {dice[0] + dice[1]}");
         }
 
         public void Play()
         {
+            Random rnd = new Random();
+
             string space = "                                  ";
             Console.WriteLine("\n\n\n");
             Console.WriteLine(space + "$$\\      $$\\  $$$$$$\\  $$\\   $$\\  $$$$$$\\  $$$$$$$\\   $$$$$$\\  $$\\   $$\\     $$\\       ");
@@ -67,22 +71,22 @@ namespace MONOPOLY_LEDUC_GABISON.models
             Console.WriteLine(space + "$$ | \\_/ $$ | $$$$$$  |$$ | \\$$ | $$$$$$  |$$ |       $$$$$$  |$$$$$$$$\\ $$ |          ");
             Console.WriteLine(space + "\\__|     \\__| \\______/ \\__|  \\__| \\______/ \\__|       \\______/ \\________|\\__|          \n\n");
             int nbPlayer;
-            string p;
+            string p = "";
             do
-            {
-                Console.Write("Select the number of players: ");
-                p = Console.ReadLine();
-            } while (!int.TryParse(p, out nbPlayer) || nbPlayer <= 1);
+                if (players.Count <= 1)
+                {
+                    Console.Write("Select the number of players: ");
+                    p = Console.ReadLine();
+                } while (!int.TryParse(p, out nbPlayer) || nbPlayer <= 1);
 
             for (int i = 1; i <= nbPlayer; i++)
             {
-                Console.Write($"\nEntrer the name of Player N°{i}: ");
+                Console.Write($"\nEnter the name of Player NÂ°{i}: ");
                 AddPlayer(new Player(Console.ReadLine()));
             }
 
             if (currentPlayer == null)
             {
-                Random rnd = new Random();
                 indexCurrentPlayer = rnd.Next(0, players.Count);
                 currentPlayer = players[indexCurrentPlayer];
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
@@ -93,12 +97,13 @@ namespace MONOPOLY_LEDUC_GABISON.models
 
             do
             {
-                RollDice();
+                Console.WriteLine($"\n\n{currentPlayer.Name}, Press 'Enter' to roll the dice");
+                Console.ReadLine();
+                RollDice(rnd);
                 bool isTurnOver = currentPlayer.Move(dice[0] + dice[1], dice[0] == dice[1]);
                 Console.WriteLine(currentPlayer);
                 if (isTurnOver)
                 {
-                    // Replace with Iterator pattern
                     indexCurrentPlayer++;
                     if (indexCurrentPlayer >= players.Count)
                     {

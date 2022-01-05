@@ -50,18 +50,19 @@ namespace MONOPOLY_LEDUC_GABISON.models
         }
 
         public void RollDice(Random rnd)
-        {
+        {            
             dice[0] = rnd.Next(1, 7);
             dice[1] = rnd.Next(1, 7);
-            Console.WriteLine($"1st dice: {dice[0]}, 2nd dice: {dice[1]}\nTotal: {dice[0] + dice[1]}");
+            Console.WriteLine($"\nDie 1: {dice[0]}\nDie 2: {dice[1]}\nSum Dice: {dice[0]+dice[1]}");
         }
 
         public void Play()
         {
             Random rnd = new Random();
-
+            Console.BackgroundColor = ConsoleColor.Gray;
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             string space = "                                  ";
-            Console.WriteLine("\n\n\n");
+            Console.WriteLine("\n\n");
             Console.WriteLine(space + "$$\\      $$\\  $$$$$$\\  $$\\   $$\\  $$$$$$\\  $$$$$$$\\   $$$$$$\\  $$\\   $$\\     $$\\       ");
             Console.WriteLine(space + "$$$\\    $$$ |$$  __$$\\ $$$\\  $$ |$$  __$$\\ $$  __$$\\ $$  __$$\\ $$ |  \\$$\\   $$  |      ");
             Console.WriteLine(space + "$$$$\\  $$$$ |$$ /  $$ |$$$$\\ $$ |$$ /  $$ |$$ |  $$ |$$ /  $$ |$$ |   \\$$\\ $$  /       ");
@@ -72,6 +73,7 @@ namespace MONOPOLY_LEDUC_GABISON.models
             Console.WriteLine(space + "\\__|     \\__| \\______/ \\__|  \\__| \\______/ \\__|       \\______/ \\________|\\__|          \n\n");
             int nbPlayer;
             string p = "";
+            Console.ForegroundColor = ConsoleColor.Blue;
             do
                 if (players.Count <= 1)
                 {
@@ -89,9 +91,9 @@ namespace MONOPOLY_LEDUC_GABISON.models
             {
                 indexCurrentPlayer = rnd.Next(0, players.Count);
                 currentPlayer = players[indexCurrentPlayer];
-                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.ForegroundColor = ConsoleColor.Red;
                 Console.WriteLine($"\n\n{currentPlayer.Name} starts the game!\n\n");
-                Console.ForegroundColor = ConsoleColor.White;
+                Console.ForegroundColor = ConsoleColor.DarkBlue;
             }
             
 
@@ -106,9 +108,7 @@ namespace MONOPOLY_LEDUC_GABISON.models
                 {
                     indexCurrentPlayer++;
                     if (indexCurrentPlayer >= players.Count)
-                    {
-                        indexCurrentPlayer = 0;
-                    }
+                        indexCurrentPlayer = 0;                    
                     currentPlayer = players[indexCurrentPlayer];
                 }
             } while (!IsGameOver());

@@ -30,7 +30,7 @@ namespace MONOPOLY_LEDUC_GABISON.models
             nbTurnInJail = 0;
             nbCompletedLaps = 0;
             nbDoublesInARow = 0;
-            lapObserver = new StrObserver($"Lap N°{nbCompletedLaps} for {this.name}.");
+            lapObserver = new StrObserver($"New lap for {this.name}!");
             inJailObserver = new StrObserver($"Oh no! {this.name} is in jail (square 10)! Make a double or wait 3 turns to get out of jail.");
             outJailObserver = new StrObserver($"Congrats, {this.name}! You're finally out of jail!");
             doubleObserver = new StrObserver($"{this.name} made 3 doubles in a row.");

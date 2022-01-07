@@ -18,7 +18,7 @@ namespace MONOPOLY_LEDUC_GABISON.models
         private int nbTurnInJail;
         private int nbCompletedLaps;
         private int nbDoublesInARow;
-        private StrObserver lapObserver, inJailObserver, outJailObserver, doubleObserver, square30Observer;
+        private StrObserver lapObserver, inJailObserver, outJailObserver, doublesToJail, square30Observer, doubleObserver;
             
 
         // Constructor
@@ -33,8 +33,9 @@ namespace MONOPOLY_LEDUC_GABISON.models
             lapObserver = new StrObserver($"New lap for {this.name}!");
             inJailObserver = new StrObserver($"Oh no! {this.name} is in jail (square 10)! Make a double or wait 3 turns to get out of jail.");
             outJailObserver = new StrObserver($"Congrats, {this.name}! You're finally out of jail!");
-            doubleObserver = new StrObserver($"{this.name} made 3 doubles in a row.");
+            doublesToJail = new StrObserver($"{this.name} made 3 doubles in a row.");
             square30Observer = new StrObserver($"{this.name} arrived on square 30.");
+            doubleObserver = new StrObserver($"{this.name} made a double.");
         }
 
         // Getters and Setters
@@ -48,23 +49,39 @@ namespace MONOPOLY_LEDUC_GABISON.models
         // Methods
         public void notifyLapObserver()
         {
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             lapObserver.update();
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
         public void notifyInJailObserver()
         {
+            Console.ForegroundColor = ConsoleColor.DarkRed;
             inJailObserver.update();
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
         public void notifyOutJailObserver()
         {
+            Console.ForegroundColor = ConsoleColor.DarkGreen;
             outJailObserver.update();
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
         public void notifyDoubleObserver()
         {
+            Console.ForegroundColor = ConsoleColor.Yellow;
             doubleObserver.update();
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+        }
+        public void notifyDoubleToJailObserver()
+        {
+            Console.ForegroundColor = ConsoleColor.Magenta;
+            doublesToJail.update();
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
         public void notifySquare30Observer()
         {
+            Console.ForegroundColor = ConsoleColor.Magenta;
             square30Observer.update();
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
 
 
@@ -100,10 +117,11 @@ namespace MONOPOLY_LEDUC_GABISON.models
 
             if (isDouble)
             {
+                notifyDoubleObserver();
                 nbDoublesInARow++;
                 if (nbDoublesInARow == LIMIT_DOUBLES_IN_A_ROW)
                 {
-                    notifyDoubleObserver();   
+                    notifyDoubleToJailObserver();   
                     GoToJail();
                     return true;
                 }

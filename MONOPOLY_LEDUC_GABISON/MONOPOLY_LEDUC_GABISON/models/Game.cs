@@ -59,7 +59,6 @@ namespace MONOPOLY_LEDUC_GABISON.models
         public void Play()
         {
             Random rnd = new Random();
-            Console.BackgroundColor = ConsoleColor.Gray;
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             string space = "                                  ";
             Console.WriteLine("\n\n");
@@ -92,14 +91,16 @@ namespace MONOPOLY_LEDUC_GABISON.models
                 indexCurrentPlayer = rnd.Next(0, players.Count);
                 currentPlayer = players[indexCurrentPlayer];
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"\n\n{currentPlayer.Name} starts the game!\n\n");
-                Console.ForegroundColor = ConsoleColor.DarkBlue;
+                Console.WriteLine($"\n\n{currentPlayer.Name} starts the game!");
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
             }
             
 
             do
             {
-                Console.WriteLine($"\n\n{currentPlayer.Name}, Press 'Enter' to roll the dice");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.WriteLine($"\n\n{currentPlayer.Name}, Press 'Enter' to roll the dice.");
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.ReadLine();
                 RollDice(rnd);
                 bool isTurnOver = currentPlayer.Move(dice[0] + dice[1], dice[0] == dice[1]);
@@ -113,7 +114,7 @@ namespace MONOPOLY_LEDUC_GABISON.models
                 }
             } while (!IsGameOver());
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.WriteLine($"Congrats {GetWinner().Name} ! You're the winner !");
+            Console.WriteLine($"\n\nCongrats {GetWinner().Name} ! You're the winner !");
             Console.ForegroundColor = ConsoleColor.White;
         }
 

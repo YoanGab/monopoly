@@ -14,7 +14,7 @@ namespace MONOPOLY_LEDUC_GABISON.models
         private Player currentPlayer;
         private int[] dice;
 
-        public static Game getInstance()
+        public static Game GetInstance()
         {
             if (instance == null)
                 instance = new Game();

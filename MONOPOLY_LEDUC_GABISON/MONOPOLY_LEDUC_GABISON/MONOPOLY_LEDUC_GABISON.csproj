@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="models\Game.cs" />
-    <Compile Include="models\Iterator.cs" />
     <Compile Include="models\Observer.cs" />
     <Compile Include="models\Player.cs" />
     <Compile Include="models\StrObserver.cs" />

@@ -1,15 +1,15 @@
 ﻿using System;
 class StrObserver : Observer
 {
-    private string str;
+    private readonly string message;
 
-    public StrObserver(string str)
+    public StrObserver(string message)
     {
-        this.str = str;
+        this.message = message;
     }
 
-    public override void update()
+    public override void Update()
     {
-        Console.WriteLine(str);
+        Console.WriteLine(message);
     }
 }

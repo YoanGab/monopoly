@@ -39,17 +39,17 @@ namespace MONOPOLY_LEDUC_GABISON.models
         public int[] Dice { get => dice; set => dice = value; }
 
         // Methods       
-        public void AddPlayer(Player player)
+        private void AddPlayer(Player player)
         {
             players.Add(player);
         }
 
-        public void RemovePlayer(Player player)
+        private void RemovePlayer(Player player)
         {
             players.Remove(player);
         }
 
-        public void RollDice(Random rnd)
+        private void RollDice(Random rnd)
         {            
             dice[0] = rnd.Next(1, 7);
             dice[1] = rnd.Next(1, 7);
@@ -118,7 +118,7 @@ namespace MONOPOLY_LEDUC_GABISON.models
             Console.ForegroundColor = ConsoleColor.White;
         }
 
-        public bool IsGameOver()
+        private bool IsGameOver()
         {
             int indexLastPlayer = indexCurrentPlayer - 1;
             if (indexLastPlayer < 0)
@@ -128,7 +128,7 @@ namespace MONOPOLY_LEDUC_GABISON.models
             return players[indexLastPlayer].NbCompletedLaps >= 3;
         }
 
-        public Player GetWinner()
+        private Player GetWinner()
         {
             int indexLastPlayer = indexCurrentPlayer - 1;
             if (indexLastPlayer < 0)

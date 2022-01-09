@@ -50,45 +50,42 @@ namespace MONOPOLY_LEDUC_GABISON.models
         public void notifyLapObserver()
         {
             Console.ForegroundColor = ConsoleColor.DarkGreen;
-            lapObserver.update();
+            lapObserver.Update();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
         public void notifyInJailObserver()
         {
             Console.ForegroundColor = ConsoleColor.DarkRed;
-            inJailObserver.update();
+            inJailObserver.Update();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
         public void notifyOutJailObserver()
         {
             Console.ForegroundColor = ConsoleColor.DarkGreen;
-            outJailObserver.update();
+            outJailObserver.Update();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
         public void notifyDoubleObserver()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            doubleObserver.update();
+            doubleObserver.Update();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
         public void notifyDoubleToJailObserver()
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
-            doublesToJail.update();
+            doublesToJail.Update();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
         public void notifySquare30Observer()
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
-            square30Observer.update();
+            square30Observer.Update();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
 
 
-
-
-
-        public int Move(int nbSteps)
+        private void Move(int nbSteps)
         {
             position += nbSteps;
             if (position >= 40)
@@ -97,7 +94,6 @@ namespace MONOPOLY_LEDUC_GABISON.models
                 nbCompletedLaps++;
                 notifyLapObserver();
             }
-            return position;
         }
 
         public bool Move(int nbSteps, bool isDouble)

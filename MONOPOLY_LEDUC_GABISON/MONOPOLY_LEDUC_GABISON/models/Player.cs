@@ -48,43 +48,49 @@ namespace MONOPOLY_LEDUC_GABISON.models
         public int NbDoublesInARow { get => nbDoublesInARow; set => nbDoublesInARow = value; }
 
         // Methods
-        public void notifyLapObserver()
+        private void NotifyLapObserver()
         {
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             lapObserver.Update();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
-        public void notifyInJailObserver()
+
+        private void NotifyInJailObserver()
         {
             Console.ForegroundColor = ConsoleColor.DarkRed;
             inJailObserver.Update();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
-        public void notifyOutJailObserver()
+
+        private void NotifyOutJailObserver()
         {
             Console.ForegroundColor = ConsoleColor.DarkGreen;
             outJailObserver.Update();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
-        public void notifyDoubleObserver()
+
+        private void NotifyDoubleObserver()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             doubleObserver.Update();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
-        public void notifyDoubleToJailObserver()
+
+        private void NotifyDoubleToJailObserver()
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
             doublesToJail.Update();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
-        public void notifyGoToJailSquareObserver()
+
+        private void NotifyGoToJailSquareObserver()
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
             goToJailSquareObserver.Update();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
-        public void notifyVisitJailOnlyObserver()
+
+        private void NotifyVisitJailOnlyObserver()
         {
             Console.ForegroundColor = ConsoleColor.White;
             visitJailOnlyObserver.Update();
@@ -99,7 +105,7 @@ namespace MONOPOLY_LEDUC_GABISON.models
             {
                 position %= 40;
                 nbCompletedLaps++;
-                notifyLapObserver();
+                NotifyLapObserver();
             }
         }
 
@@ -113,18 +119,18 @@ namespace MONOPOLY_LEDUC_GABISON.models
                     Move(nbSteps);
                     isInJail = false;
                     nbTurnInJail = 0;
-                    notifyOutJailObserver();
+                    NotifyOutJailObserver();
                 }
                 return true;
             }
 
             if (isDouble)
             {
-                notifyDoubleObserver();
+                NotifyDoubleObserver();
                 nbDoublesInARow++;
                 if (nbDoublesInARow == LIMIT_DOUBLES_IN_A_ROW)
                 {
-                    notifyDoubleToJailObserver();   
+                    NotifyDoubleToJailObserver();
                     GoToJail();
                     return true;
                 }
@@ -132,11 +138,11 @@ namespace MONOPOLY_LEDUC_GABISON.models
 
             Move(nbSteps);
             if (position == JAIL_POSITION && !isInJail)
-                notifyVisitJailOnlyObserver();
+                NotifyVisitJailOnlyObserver();
 
             if (position == GO_TO_JAIL_CASE_POSITION)
             {
-                notifyGoToJailSquareObserver();
+                NotifyGoToJailSquareObserver();
                 GoToJail();                
                 return true;
             }
@@ -156,7 +162,7 @@ namespace MONOPOLY_LEDUC_GABISON.models
             position = JAIL_POSITION;
             isInJail = true;
             nbTurnInJail = 0;
-            notifyInJailObserver();
+            NotifyInJailObserver();
         }
 
         public override string ToString()

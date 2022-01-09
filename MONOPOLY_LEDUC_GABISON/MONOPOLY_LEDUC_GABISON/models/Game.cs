@@ -93,9 +93,9 @@ namespace MONOPOLY_LEDUC_GABISON.models
             do
                 if (players.Count <= 1)
                 {
-                    Console.Write("Select the number of players: ");
+                    Console.Write("Select the number of players (2-4): ");
                     p = Console.ReadLine();
-                } while (!int.TryParse(p, out nbPlayer) || nbPlayer <= 1);
+                } while (!int.TryParse(p, out nbPlayer) || nbPlayer <= 1 || nbPlayer > 4);
 
             for (int i = 1; i <= nbPlayer; i++)
             {

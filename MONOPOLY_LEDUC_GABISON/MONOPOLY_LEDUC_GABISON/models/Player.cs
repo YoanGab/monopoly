@@ -18,7 +18,7 @@ namespace MONOPOLY_LEDUC_GABISON.models
         private int nbTurnInJail;
         private int nbCompletedLaps;
         private int nbDoublesInARow;
-        private StrObserver lapObserver, inJailObserver, outJailObserver, doublesToJail, square30Observer, doubleObserver;
+        private StrObserver lapObserver, inJailObserver, outJailObserver, doublesToJail, goToJailSquareObserver, doubleObserver, visitJailOnlyObserver;
             
 
         // Constructor
@@ -34,8 +34,9 @@ namespace MONOPOLY_LEDUC_GABISON.models
             inJailObserver = new StrObserver($"Oh no! {this.name} is in jail (square 10)! Make a double or wait 3 turns to get out of jail.");
             outJailObserver = new StrObserver($"Congrats, {this.name}! You're finally out of jail!");
             doublesToJail = new StrObserver($"{this.name} made 3 doubles in a row.");
-            square30Observer = new StrObserver($"{this.name} arrived on square 30.");
+            goToJailSquareObserver = new StrObserver($"{this.name} arrived on square 30.");
             doubleObserver = new StrObserver($"{this.name} made a double.");
+            visitJailOnlyObserver = new StrObserver($"{this.name} is visiting jail only (square 10).");
         }
 
         // Getters and Setters
@@ -77,10 +78,16 @@ namespace MONOPOLY_LEDUC_GABISON.models
             doublesToJail.Update();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
-        public void notifySquare30Observer()
+        public void notifyGoToJailSquareObserver()
         {
             Console.ForegroundColor = ConsoleColor.Magenta;
-            square30Observer.Update();
+            goToJailSquareObserver.Update();
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+        }
+        public void notifyVisitJailOnlyObserver()
+        {
+            Console.ForegroundColor = ConsoleColor.White;
+            visitJailOnlyObserver.Update();
             Console.ForegroundColor = ConsoleColor.DarkCyan;
         }
 
@@ -124,9 +131,12 @@ namespace MONOPOLY_LEDUC_GABISON.models
             }
 
             Move(nbSteps);
+            if (position == JAIL_POSITION && !isInJail)
+                notifyVisitJailOnlyObserver();
+
             if (position == GO_TO_JAIL_CASE_POSITION)
             {
-                notifySquare30Observer();
+                notifyGoToJailSquareObserver();
                 GoToJail();                
                 return true;
             }

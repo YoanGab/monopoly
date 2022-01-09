@@ -56,6 +56,23 @@ namespace MONOPOLY_LEDUC_GABISON.models
             Console.WriteLine($"\nDie 1: {dice[0]}\nDie 2: {dice[1]}\nSum Dice: {dice[0]+dice[1]}");
         }
 
+        private void GetFirstPlayer(Random rnd)
+        {
+            indexCurrentPlayer = rnd.Next(0, players.Count);
+            currentPlayer = players[indexCurrentPlayer];
+            Console.ForegroundColor = ConsoleColor.Red;
+            Console.WriteLine($"\n\n{currentPlayer.Name} starts the game!");
+            Console.ForegroundColor = ConsoleColor.DarkCyan;
+        }
+
+        private void GetNextPlayer()
+        {
+            indexCurrentPlayer++;
+            if (indexCurrentPlayer >= players.Count)
+                indexCurrentPlayer = 0;
+            currentPlayer = players[indexCurrentPlayer];
+        }
+
         public void Play()
         {
             Random rnd = new Random();
@@ -88,13 +105,8 @@ namespace MONOPOLY_LEDUC_GABISON.models
 
             if (currentPlayer == null)
             {
-                indexCurrentPlayer = rnd.Next(0, players.Count);
-                currentPlayer = players[indexCurrentPlayer];
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.WriteLine($"\n\n{currentPlayer.Name} starts the game!");
-                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                GetFirstPlayer(rnd);
             }
-            
 
             do
             {
@@ -107,10 +119,7 @@ namespace MONOPOLY_LEDUC_GABISON.models
                 Console.WriteLine(currentPlayer);
                 if (isTurnOver)
                 {
-                    indexCurrentPlayer++;
-                    if (indexCurrentPlayer >= players.Count)
-                        indexCurrentPlayer = 0;                    
-                    currentPlayer = players[indexCurrentPlayer];
+                    GetNextPlayer();
                 }
             } while (!IsGameOver());
             Console.ForegroundColor = ConsoleColor.Green;

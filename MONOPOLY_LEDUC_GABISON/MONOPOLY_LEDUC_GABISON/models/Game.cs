@@ -73,11 +73,10 @@ namespace MONOPOLY_LEDUC_GABISON.models
             currentPlayer = players[indexCurrentPlayer];
         }
 
-        public void Play()
+        public void DisplayTitle()
         {
-            Random rnd = new Random();
             Console.ForegroundColor = ConsoleColor.DarkGreen;
-            string space = "                                  ";
+            const string space = "                                  ";
             Console.WriteLine("\n\n");
             Console.WriteLine(space + "$$\\      $$\\  $$$$$$\\  $$\\   $$\\  $$$$$$\\  $$$$$$$\\   $$$$$$\\  $$\\   $$\\     $$\\       ");
             Console.WriteLine(space + "$$$\\    $$$ |$$  __$$\\ $$$\\  $$ |$$  __$$\\ $$  __$$\\ $$  __$$\\ $$ |  \\$$\\   $$  |      ");
@@ -87,9 +86,15 @@ namespace MONOPOLY_LEDUC_GABISON.models
             Console.WriteLine(space + "$$ |\\$  /$$ |$$ |  $$ |$$ |\\$$$ |$$ |  $$ |$$ |      $$ |  $$ |$$ |      $$ |          ");
             Console.WriteLine(space + "$$ | \\_/ $$ | $$$$$$  |$$ | \\$$ | $$$$$$  |$$ |       $$$$$$  |$$$$$$$$\\ $$ |          ");
             Console.WriteLine(space + "\\__|     \\__| \\______/ \\__|  \\__| \\______/ \\__|       \\______/ \\________|\\__|          \n\n");
-            int nbPlayer;
-            string p = "";
             Console.ForegroundColor = ConsoleColor.Blue;
+        }
+
+        public void Play()
+        {
+            DisplayTitle();
+            Random rnd = new Random();            
+            int nbPlayer;
+            string p = "";            
             do
                 if (players.Count <= 1)
                 {
@@ -125,6 +130,7 @@ namespace MONOPOLY_LEDUC_GABISON.models
             Console.ForegroundColor = ConsoleColor.Green;
             Console.WriteLine($"\n\nCongrats {GetWinner().Name} ! You're the winner !");
             Console.ForegroundColor = ConsoleColor.White;
+            DisplayTitle();
         }
 
         private bool IsGameOver()

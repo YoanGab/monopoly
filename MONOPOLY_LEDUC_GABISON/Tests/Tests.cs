@@ -86,6 +86,5 @@ namespace Tests
             Assert.AreEqual(13, player.Position);
             Assert.AreEqual(false, player.IsInJail);
         }
-
     }
 }
